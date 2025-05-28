@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        width = 3f;
     }
 
     private void Update()
@@ -36,8 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Platform"))
         {
-            // 아래로 떨어지고 있을 때만 점프 반응
-            if (rb.velocity.y <= 0)
+            // 옆에서 부딪혀도 반응함
+            if (rb.velocity.y <= 0 )
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             }
