@@ -1,10 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum PlatformType
+{
+    Normal,
+    Breakable,
+    Moving
+}
 public class PlatformSpawner : MonoBehaviour
 {
-    public PlatformPool platformPool;
+    [SerializeField] private PlatformPool poolNormal;
+    [SerializeField] private PlatformPool poolBreakable;
+    [SerializeField] private PlatformPool poolMoving;
     public Transform player;
     public float levelWidth = 3f;
     public float platformSpacing = 2.5f;
@@ -16,25 +22,23 @@ public class PlatformSpawner : MonoBehaviour
     void Start()
     {
         for (int i = 0; i < initialPlatforms; i++)
-        {
             SpawnPlatform();
-        }
     }
 
     void Update()
     {
-        // 위로 올라가면 더 생성
         while (player.position.y + 10f > spawnY)
-        {
             SpawnPlatform();
-        }
 
-        // 아래에 있는 건 반환
         for (int i = activePlatforms.Count - 1; i >= 0; i--)
         {
-            if (activePlatforms[i].transform.position.y < player.position.y - 15f)
+            GameObject platform = activePlatforms[i];
+            if (platform.transform.position.y < player.position.y - 15f)
             {
-                platformPool.ReturnPlatform(activePlatforms[i]);
+                PlatformBase baseScript = platform.GetComponent<PlatformBase>();
+                if (baseScript != null && baseScript.poolReference != null)
+                    baseScript.poolReference.ReturnPlatform(platform);
+
                 activePlatforms.RemoveAt(i);
             }
         }
@@ -44,8 +48,36 @@ public class PlatformSpawner : MonoBehaviour
     {
         float x = Random.Range(-levelWidth, levelWidth);
         Vector3 pos = new Vector3(x, spawnY, 0f);
-        GameObject platform = platformPool.GetPlatform(pos);
+
+        PlatformType type = GetRandomPlatformType();
+        PlatformPool usedPool = GetPoolByType(type);
+
+        GameObject platform = usedPool.GetPlatform(pos);
+
+        PlatformBase baseScript = platform.GetComponent<PlatformBase>();
+        if (baseScript != null)
+            baseScript.poolReference = usedPool;
+
         activePlatforms.Add(platform);
         spawnY += platformSpacing;
+    }
+
+    PlatformType GetRandomPlatformType()
+    {
+        float r = Random.value;
+        if (r < 0.6f) return PlatformType.Normal;
+        else if (r < 0.85f) return PlatformType.Breakable;
+        else return PlatformType.Moving;
+    }
+
+    PlatformPool GetPoolByType(PlatformType type)
+    {
+        switch (type)
+        {
+            case PlatformType.Normal: return poolNormal;
+            case PlatformType.Breakable: return poolBreakable;
+            case PlatformType.Moving: return poolMoving;
+            default: return poolNormal;
+        }
     }
 }

@@ -18,27 +18,18 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMove();
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.relativeVelocity.y >= 0)
-        {
-            if (collision.collider.CompareTag("Platform"))
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-            }
-        }
-    }
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Platform"))
+        if (collision.CompareTag("Platform") && rb.velocity.y <= 0f)
         {
-            // ¿·¿¡¼­ ºÎµúÇôµµ ¹ÝÀÀÇÔ
-            if (rb.velocity.y <= 0 )
+            // Á¡ÇÁ
+            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+
+            // ÇÃ·§Æû µ¿ÀÛ È£Ãâ (Breakable µî)
+            PlatformBase platform = collision.GetComponent<PlatformBase>();
+            if (platform != null)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+                platform.OnPlayerLanding();
             }
         }
     }
