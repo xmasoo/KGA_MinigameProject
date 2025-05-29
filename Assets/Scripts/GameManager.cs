@@ -8,21 +8,25 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public float score = 0f;
     public float gameOverHeight = 15f;
     public Transform player;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI highScoreText;
     public GameObject gameOverPanel;
     public CinemachineVirtualCamera gameOverCam;
     
 
+    private float score = 0f;
     private bool isGameOver = false;
     private float highestY = 0f;
+    private int highScore = 0;
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
     }
 
     private void Update()
@@ -30,10 +34,11 @@ public class GameManager : MonoBehaviour
         if (isGameOver) return;
 
         UpdateScore();
-        if (player.position.y < highestY - 10f)
+        if (player.position.y < highestY - 20f)//특정높이이상 떨어지면 게임오버
         {
             GameOver();
         }
+        
     }
 
     void UpdateScore()
@@ -51,6 +56,13 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         gameOverPanel.SetActive(true);
         gameOverCam.gameObject.SetActive(true);
+
+        if (score > highScore)
+        {
+            highScore = (int)score;
+            PlayerPrefs.SetInt("HighScore", highScore);
+            highScoreText.text = "Best : " + highScore.ToString();
+        }
     }
 
     public void Restart()
