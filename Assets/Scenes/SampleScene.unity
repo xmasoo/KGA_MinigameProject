@@ -658,7 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformPrefab: {fileID: 1313031296347180465, guid: c93d2c8f0f0113c45a95ba712d43723b, type: 3}
-  poolSize: 20
+  poolSize: 10
 --- !u!4 &702741407
 Transform:
   m_ObjectHideFlags: 0
@@ -834,7 +834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformPrefab: {fileID: 1313031296347180465, guid: a73c1f8bcfd244343ba208d6fd6972f0, type: 3}
-  poolSize: 20
+  poolSize: 10
 --- !u!4 &1133985530
 Transform:
   m_ObjectHideFlags: 0
@@ -882,6 +882,7 @@ MonoBehaviour:
   poolNormal: {fileID: 789561808}
   poolBreakable: {fileID: 702741406}
   poolMoving: {fileID: 1133985529}
+  poolSpring: {fileID: 0}
   player: {fileID: 416677272}
   levelWidth: 3
   platformSpacing: 2.5

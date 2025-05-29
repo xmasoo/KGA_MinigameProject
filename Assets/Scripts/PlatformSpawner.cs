@@ -4,13 +4,15 @@ public enum PlatformType
 {
     Normal,
     Breakable,
-    Moving
+    Moving,
+    Spring
 }
 public class PlatformSpawner : MonoBehaviour
 {
     [SerializeField] private PlatformPool poolNormal;
     [SerializeField] private PlatformPool poolBreakable;
     [SerializeField] private PlatformPool poolMoving;
+    [SerializeField] private PlatformPool poolSpring;
     public Transform player;
     public float levelWidth = 3f;
     public float platformSpacing = 2.5f;
@@ -65,9 +67,10 @@ public class PlatformSpawner : MonoBehaviour
     PlatformType GetRandomPlatformType()
     {
         float r = Random.value;
-        if (r < 0.6f) return PlatformType.Normal;
-        else if (r < 0.85f) return PlatformType.Breakable;
-        else return PlatformType.Moving;
+        if (r < 0.5f) return PlatformType.Normal;
+        else if (r < 0.75f) return PlatformType.Breakable;
+        else if (r < 0.9f) return PlatformType.Moving;
+        else return PlatformType.Spring;
     }
 
     PlatformPool GetPoolByType(PlatformType type)
@@ -77,6 +80,7 @@ public class PlatformSpawner : MonoBehaviour
             case PlatformType.Normal: return poolNormal;
             case PlatformType.Breakable: return poolBreakable;
             case PlatformType.Moving: return poolMoving;
+            case PlatformType.Spring: return poolSpring;
             default: return poolNormal;
         }
     }
