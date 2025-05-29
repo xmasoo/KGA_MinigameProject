@@ -50,9 +50,22 @@ public class PlayerController : MonoBehaviour
         float input = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(input * moveSpeed, rb.velocity.y);
 
+        if (input > 0 && transform.localScale.x < 0)
+            Flip();   // 오른쪽 보게
+        else if (input < 0 && transform.localScale.x > 0)
+            Flip();   // 왼쪽 보게
+
         Vector3 pos = transform.position;
         if (pos.x > width) pos.x = -width;
         else if (pos.x < -width) pos.x = width;
         transform.position = pos;
+        
+    }
+
+    private void Flip()
+    {
+        Vector3 s = transform.localScale;
+        s.x *= -1;
+        transform.localScale = s;
     }
 }
