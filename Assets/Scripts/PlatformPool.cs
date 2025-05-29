@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlatformPool : MonoBehaviour
 {
     public GameObject platformPrefab;
-    public int poolSize = 20;
+    public int poolSize = 10;
 
     private Queue<GameObject> pool = new Queue<GameObject>();
 

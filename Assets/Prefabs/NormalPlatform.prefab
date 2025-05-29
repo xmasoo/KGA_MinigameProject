@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4183914704262218622}
   - component: {fileID: 4783150898624591006}
   - component: {fileID: 6030781577544537183}
+  - component: {fileID: -2104346407317350704}
   m_Layer: 0
   m_Name: NormalPlatform
   m_TagString: Platform
@@ -130,3 +131,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-2104346407317350704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313031296347180465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5b538f4e0142e4d9b4ef65be21dd0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolReference: {fileID: 0}
