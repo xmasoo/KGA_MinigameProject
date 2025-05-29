@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
         else Destroy(gameObject);
 
         highScore = PlayerPrefs.GetInt("HighScore", 0);
+
+
     }
 
     private void Update()
@@ -56,6 +58,7 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         gameOverPanel.SetActive(true);
         gameOverCam.gameObject.SetActive(true);
+        gameOverCam.Follow = null;
 
         if (score > highScore)
         {

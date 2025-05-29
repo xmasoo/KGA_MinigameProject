@@ -20,25 +20,25 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("트리거 감지됨: " + collision.name);
+        //Debug.Log("트리거 감지됨: " + collision.name);
 
         if (collision.CompareTag("Platform"))
         {
-            Debug.Log("Platform 태그 확인됨");
+            //Debug.Log("Platform 태그 확인됨");
 
             if (rb.velocity.y <= 0f)
             {
-                Debug.Log("낙하 중");
+                //Debug.Log("낙하 중");
 
                 PlatformBase platform = collision.GetComponent<PlatformBase>();
                 if (platform is SpringPlatform spring)
                 {
-                    Debug.Log("spring");
+                    //Debug.Log("spring");
                     rb.velocity = new Vector2(rb.velocity.x, spring.boostJumpForce);
                 }
                 else
                 {
-                    Debug.Log("기본 점프");
+                    //Debug.Log("기본 점프");
                     platform.OnPlayerLanding();
                     rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
                 }
