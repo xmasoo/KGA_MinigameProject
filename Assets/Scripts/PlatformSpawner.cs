@@ -35,7 +35,7 @@ public class PlatformSpawner : MonoBehaviour
         for (int i = activePlatforms.Count - 1; i >= 0; i--)
         {
             GameObject platform = activePlatforms[i];
-            if (platform.transform.position.y < player.position.y - 15f)
+            if (platform.transform.position.y < player.position.y - 20f)
             {
                 PlatformBase baseScript = platform.GetComponent<PlatformBase>();
                 if (baseScript != null && baseScript.poolReference != null)

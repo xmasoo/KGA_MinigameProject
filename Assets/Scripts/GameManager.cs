@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
         highScore = PlayerPrefs.GetInt("HighScore", 0);
 
-
+        gameOverPanel.SetActive(false);
     }
 
     private void Update()
@@ -58,14 +58,16 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         gameOverPanel.SetActive(true);
         gameOverCam.gameObject.SetActive(true);
-        gameOverCam.Follow = null;
+        gameOverCam.transform.position = new Vector3(0, highestY - 40, -10);
+        scoreText.gameObject.SetActive(false);
 
         if (score > highScore)
         {
             highScore = (int)score;
             PlayerPrefs.SetInt("HighScore", highScore);
-            highScoreText.text = "Best : " + highScore.ToString();
         }
+            highScoreText.text = "Score : " + score.ToString() +
+            "\nBest : " + highScore.ToString();
     }
 
     public void Restart()
