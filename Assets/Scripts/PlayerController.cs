@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpSpeed;
     [SerializeField] float width;
-
+    
 
     private Rigidbody2D rb;
 

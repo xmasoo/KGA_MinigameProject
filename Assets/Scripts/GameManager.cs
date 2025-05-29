@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI highScoreText;
     public GameObject gameOverPanel;
     public CinemachineVirtualCamera gameOverCam;
-    
+
+    [SerializeField] Animator animator;
+    private readonly int HashGameOver = Animator.StringToHash("isGameOver");
 
     private float score = 0f;
     private bool isGameOver = false;
@@ -60,6 +62,8 @@ public class GameManager : MonoBehaviour
         gameOverCam.gameObject.SetActive(true);
         gameOverCam.transform.position = new Vector3(0, highestY - 40, -10);
         scoreText.gameObject.SetActive(false);
+
+        animator.SetBool(HashGameOver, true);
 
         if (score > highScore)
         {

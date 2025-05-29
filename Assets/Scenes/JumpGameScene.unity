@@ -333,6 +333,7 @@ MonoBehaviour:
   highScoreText: {fileID: 949598246}
   gameOverPanel: {fileID: 1489528440}
   gameOverCam: {fileID: 461868753}
+  animator: {fileID: 1170057562}
 --- !u!4 &435199051
 Transform:
   m_ObjectHideFlags: 0
@@ -1598,6 +1599,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140014672}
   m_CullTransparentMesh: 1
+--- !u!95 &1170057562 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8082136787404945680, guid: 485c6c768ede2cb49bb088834e7586ea, type: 3}
+  m_PrefabInstance: {fileID: 2664496914274258646}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1186735440
 GameObject:
   m_ObjectHideFlags: 3
