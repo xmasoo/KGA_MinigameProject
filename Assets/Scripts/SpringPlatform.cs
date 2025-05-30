@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpringPlatform : PlatformBase
 {
-    public float boostJumpForce = 20f;
+    public float boostJumpForce = 25f;
 
     public override void OnPlayerLanding()
     {

@@ -5,7 +5,8 @@ public enum PlatformType
     Normal,
     Breakable,
     Moving,
-    Spring
+    Spring,
+    Start
 }
 public class PlatformSpawner : MonoBehaviour
 {
@@ -14,9 +15,9 @@ public class PlatformSpawner : MonoBehaviour
     [SerializeField] private PlatformPool poolMoving;
     [SerializeField] private PlatformPool poolSpring;
     public Transform player;
-    public float levelWidth = 3f;
-    public float platformSpacing = 2.5f;
-    public int initialPlatforms = 10;
+    public float levelWidth = 3f;//플랫폼이 생성되는 가로 범위
+    public float platformSpacing = 4f;//플랫폼이 생성되는 세로 높이
+    public int initialPlatforms = 10;//기본 생성되는 플랫폼 개수
 
     private float spawnY = 0f;
     private List<GameObject> activePlatforms = new List<GameObject>();
@@ -29,13 +30,13 @@ public class PlatformSpawner : MonoBehaviour
 
     void Update()
     {
-        while (player.position.y + 10f > spawnY)
+        while (player.position.y + 30f > spawnY)//이 높이만큼 플랫폼 생성
             SpawnPlatform();
 
         for (int i = activePlatforms.Count - 1; i >= 0; i--)
         {
             GameObject platform = activePlatforms[i];
-            if (platform.transform.position.y < player.position.y - 20f)
+            if (platform.transform.position.y < player.position.y - 12f)//이 높이 이하면 리턴풀
             {
                 PlatformBase baseScript = platform.GetComponent<PlatformBase>();
                 if (baseScript != null && baseScript.poolReference != null)
@@ -64,7 +65,7 @@ public class PlatformSpawner : MonoBehaviour
         spawnY += platformSpacing;
     }
 
-    PlatformType GetRandomPlatformType()
+    PlatformType GetRandomPlatformType()//플랫폼 생성 확률
     {
         float r = Random.value;
         if (r < 0.5f) return PlatformType.Normal;

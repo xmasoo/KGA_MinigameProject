@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
                 if (platform is SpringPlatform spring)
                 {
                     //Debug.Log("spring");
-                    rb.velocity = new Vector2(rb.velocity.x, spring.boostJumpForce);
+                    rb.velocity = new Vector2(rb.velocity.x, jumpSpeed + 10);
                     SoundManager.Instance.PlaySFX(jumpLongSound);
                 }
                 else
