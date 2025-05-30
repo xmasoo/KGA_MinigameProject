@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4183914704262218622}
   - component: {fileID: 4783150898624591006}
   - component: {fileID: 6030781577544537183}
-  - component: {fileID: -8770002984781851672}
+  - component: {fileID: 8710461130718708967}
   m_Layer: 0
   m_Name: SpringPlatform
   m_TagString: Platform
@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 1313031296347180465}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: -0.67, z: 0}
-  m_LocalScale: {x: 3.2841, y: 0.6193, z: 1}
+  m_LocalPosition: {x: -9.7509, y: -0.4985, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.8113208, g: 0.27171594, b: 0.42363006, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4ae15d04e0eaa4e4cac250cd03eda048, type: 3}
+  m_Color: {r: 0.6886792, g: 0.25013348, b: 0.63846654, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -118,20 +118,20 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.00000047683716, y: -0.1551446}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3.5366666, y: 1.1266667}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.482316, y: 0.6897108}
   m_EdgeRadius: 0
---- !u!114 &-8770002984781851672
+--- !u!114 &8710461130718708967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,4 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolReference: {fileID: 0}
-  boostJumpForce: 20
+  boostJumpForce: 25
