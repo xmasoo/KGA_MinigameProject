@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
     public GameObject gameOverPanel;
+    public GameObject pausePanel;
     public CinemachineVirtualCamera gameOverCam;
 
     [SerializeField] Animator animator;
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
         highScore = PlayerPrefs.GetInt("HighScore", 0);
 
         gameOverPanel.SetActive(false);
+        pausePanel.SetActive(false);
     }
 
     private void Update()
@@ -77,8 +79,15 @@ public class GameManager : MonoBehaviour
             "\nBest : " + highScore.ToString();
     }
 
-    public void Restart()
+    //public void Restart()
+    //{
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //}
+
+    public void OnPauseClicked()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.Log("Pause Clicked");
+        Time.timeScale = 0f;
+        GameManager.Instance.pausePanel.SetActive(true);
     }
 }

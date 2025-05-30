@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 
     private Button playBtn, optionBtn, quitBtn;
     private Button restartBtn, menuBtn;
+    private Button resumeBtn, restartBtn2, menuBtn2;
     private GameObject optionPanel;
 
     private void Awake()
@@ -19,7 +20,6 @@ public class UIManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            // 이벤트는 OnEnable/OnDisable에서 걸면 더 안전합니다
         }
         else Destroy(gameObject);
     }
@@ -34,12 +34,27 @@ public class UIManager : MonoBehaviour
         SceneManager.sceneLoaded -= HandleSceneLoaded;
     }
 
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name != gameplaySceneName)
+            return;
+
+        // Esc 키 눌렀을 때
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Time.timeScale 이 1 이면 일시정지, 0 이면 다시 시작
+            if (Time.timeScale > 0f)
+                OnPauseClicked();
+            else
+                OnResumeClicked();
+        }
+    }
     private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Time.timeScale = 1;
         Debug.Log($"[UIManager] Loaded Scene: {scene.name}");
         if (scene.name == titleSceneName)
         {
-            // 버튼 오브젝트 이름이 정확한지 콘솔에 출력해보세요
             playBtn = GameObject.Find("PlayBtn")?.GetComponent<Button>();
             optionBtn = GameObject.Find("OptionBtn")?.GetComponent<Button>();
             quitBtn = GameObject.Find("QuitBtn")?.GetComponent<Button>();
@@ -68,21 +83,28 @@ public class UIManager : MonoBehaviour
         }
         else if (scene.name == gameplaySceneName)
         {
-            var goPanel = GameManager.Instance.gameOverPanel.transform;
-            restartBtn = goPanel.Find("RestartBtn")?.GetComponent<Button>();
-            menuBtn = goPanel.Find("MenuBtn")?.GetComponent<Button>();
-
-            Debug.Log($" -> RestartBtn: {restartBtn}, MenuBtn: {menuBtn}");
-
-            if (restartBtn != null)
+            var canvas = GameObject.Find("Canvas");
+            var buttons = canvas.GetComponentsInChildren<Button>(true);
+            foreach (var btn in buttons)
             {
-                restartBtn.onClick.RemoveAllListeners();
-                restartBtn.onClick.AddListener(OnRestartClicked);
-            }
-            if (menuBtn != null)
-            {
-                menuBtn.onClick.RemoveAllListeners();
-                menuBtn.onClick.AddListener(OnMenuClicked);
+                switch (btn.name)
+                {
+                    case "ResumeBtn":
+                        resumeBtn = btn;
+                        resumeBtn.onClick.RemoveAllListeners();
+                        resumeBtn.onClick.AddListener(OnResumeClicked);
+                        break;
+                    case "RestartBtn":
+                        restartBtn2 = btn;
+                        restartBtn2.onClick.RemoveAllListeners();
+                        restartBtn2.onClick.AddListener(OnRestartClicked);
+                        break;
+                    case "MenuBtn":
+                        menuBtn2 = btn;
+                        menuBtn2.onClick.RemoveAllListeners();
+                        menuBtn2.onClick.AddListener(OnMenuClicked);
+                        break;
+                }
             }
         }
 
@@ -109,7 +131,7 @@ public class UIManager : MonoBehaviour
 
     private void OnRestartClicked()
     {
-        Debug.Log("Restart Clicked");
+        Debug.Log("Restart Clicked");        
         SceneManager.LoadScene(gameplaySceneName);
     }
 
@@ -118,4 +140,19 @@ public class UIManager : MonoBehaviour
         Debug.Log("Menu Clicked");
         SceneManager.LoadScene(titleSceneName);
     }
+
+
+    public void OnPauseClicked()
+    {
+        Debug.Log("Pause Clicked");
+        Time.timeScale = 0f;
+        GameManager.Instance.pausePanel.SetActive(true);
+    }
+    private void OnResumeClicked()
+    {
+        Debug.Log("Resume Clicked");
+        Time.timeScale = 1.0f;
+        GameManager.Instance.pausePanel.SetActive(false);
+    }
+
 }

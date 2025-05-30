@@ -30,4 +30,16 @@ public class SoundManager : MonoBehaviour
     {
         sfxSource.PlayOneShot(clip, volume);
     }
+
+    public float BGMVolume
+    {
+        get => bgmSource.volume;
+        set => bgmSource.volume = Mathf.Clamp01(value);
+    }
+
+    public float SFXVolume
+    {
+        get => sfxSource.volume;
+        set => sfxSource.volume = Mathf.Clamp01(value);
+    }
 }
