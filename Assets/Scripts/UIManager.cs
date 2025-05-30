@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private string titleSceneName = "TitleScene";
     [SerializeField] private string gameplaySceneName = "JumpGameScene";
 
-    private Button playBtn, optionBtn, quitBtn;
+    private Button playBtn, optionBtn, quitBtn, closeBtn;
     private Button restartBtn, menuBtn;
     private Button resumeBtn, restartBtn2, menuBtn2;
     private GameObject optionPanel;
@@ -58,6 +58,7 @@ public class UIManager : MonoBehaviour
             playBtn = GameObject.Find("PlayBtn")?.GetComponent<Button>();
             optionBtn = GameObject.Find("OptionBtn")?.GetComponent<Button>();
             quitBtn = GameObject.Find("QuitBtn")?.GetComponent<Button>();
+            closeBtn = GameObject.Find("CloseBtn")?.GetComponent<Button>();
             optionPanel = GameObject.Find("OptionPanel");
 
             Debug.Log($" -> PlayBtn: {playBtn}, OptionBtn: {optionBtn}, QuitBtn: {quitBtn}, Panel: {optionPanel}");
@@ -77,6 +78,12 @@ public class UIManager : MonoBehaviour
                 quitBtn.onClick.RemoveAllListeners();
                 quitBtn.onClick.AddListener(OnQuitClicked);
             }
+            if (closeBtn != null)
+            {
+                closeBtn.onClick.RemoveAllListeners();
+                closeBtn.onClick.AddListener(OnCloseClicked);
+            }
+
 
             if (optionPanel != null)
                 optionPanel.SetActive(false);
@@ -129,6 +136,11 @@ public class UIManager : MonoBehaviour
         Application.Quit();
     }
 
+    private void OnCloseClicked()
+    {
+        Debug.Log("Close Clicked");
+        optionPanel.SetActive(false);
+    }
     private void OnRestartClicked()
     {
         Debug.Log("Restart Clicked");        

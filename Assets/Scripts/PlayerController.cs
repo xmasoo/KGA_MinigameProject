@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        PlayerMove();
+        if (SceneManager.GetActiveScene().name == "JumpGameScene")
+            PlayerMove();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -68,7 +70,7 @@ public class PlayerController : MonoBehaviour
         if (pos.x > width) pos.x = -width;
         else if (pos.x < -width) pos.x = width;
         transform.position = pos;
-        
+
     }
 
     private void Flip()
