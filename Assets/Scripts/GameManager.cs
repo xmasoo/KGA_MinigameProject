@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject pausePanel;
     public CinemachineVirtualCamera gameOverCam;
 
+    public Text scoreTextt;
+
     [SerializeField] Animator animator;
     private readonly int HashGameOver = Animator.StringToHash("isGameOver");
 
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
             highestY = player.position.y;
             score = Mathf.Floor(highestY * 10f);
             scoreText.text = "Score: " + score.ToString();
+            scoreTextt.text = score.ToString();
         }
     }
 
