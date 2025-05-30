@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private float highestY = 0f;
     private int highScore = 0;
 
+    [SerializeField] AudioClip gameOverSound;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -62,6 +63,8 @@ public class GameManager : MonoBehaviour
         gameOverCam.gameObject.SetActive(true);
         gameOverCam.transform.position = new Vector3(0, highestY - 40, -10);
         scoreText.gameObject.SetActive(false);
+
+        SoundManager.Instance.PlaySFX(gameOverSound);
 
         animator.SetBool(HashGameOver, true);
 

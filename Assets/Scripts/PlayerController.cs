@@ -5,7 +5,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpSpeed;
     [SerializeField] float width;
-    
+
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip jumpLongSound;
+    [SerializeField] AudioClip jumpBreakSound;
+
 
     private Rigidbody2D rb;
 
@@ -35,12 +39,17 @@ public class PlayerController : MonoBehaviour
                 {
                     //Debug.Log("spring");
                     rb.velocity = new Vector2(rb.velocity.x, spring.boostJumpForce);
+                    SoundManager.Instance.PlaySFX(jumpLongSound);
                 }
                 else
                 {
                     //Debug.Log("기본 점프");
                     platform.OnPlayerLanding();
                     rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+                    if (platform is BreakPlatform)
+                        SoundManager.Instance.PlaySFX(jumpBreakSound);
+                    else
+                        SoundManager.Instance.PlaySFX(jumpSound);
                 }
             }
         }
