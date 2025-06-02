@@ -14,7 +14,7 @@ public class PlatformPool : MonoBehaviour
         // 미리 생성
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject obj = Instantiate(platformPrefab);
+            GameObject obj = Instantiate(platformPrefab, transform);//풀의 위치정보 입력하면 자동으로 자식오브젝트로 들어감
             obj.SetActive(false);
             pool.Enqueue(obj);
         }
