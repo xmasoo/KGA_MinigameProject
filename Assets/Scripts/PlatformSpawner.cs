@@ -68,7 +68,7 @@ public class PlatformSpawner : MonoBehaviour
     PlatformType GetRandomPlatformType()//ÇÃ·§Æû »ý¼º È®·ü
     {
         float r = Random.value;
-        if (r < 0.05f) return PlatformType.Normal;
+        if (r < 0.5f) return PlatformType.Normal;
         else if (r < 0.75f) return PlatformType.Breakable;
         else if (r < 0.9f) return PlatformType.Moving;
         else return PlatformType.Spring;

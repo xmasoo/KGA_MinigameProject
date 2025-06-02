@@ -657,7 +657,6 @@ MonoBehaviour:
   gameOverPanel: {fileID: 1489528440}
   pausePanel: {fileID: 1889971256}
   gameOverCam: {fileID: 461868753}
-  scoreTextt: {fileID: 0}
   animator: {fileID: 1170057562}
   skyPrefab: {fileID: 4686047751386893957, guid: 9d2c8473ac617ee49967d619ba0c7fa3, type: 3}
   skySliceHeight: 35
@@ -1795,8 +1794,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110, y: -30}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 405.319, y: -77.066}
+  m_SizeDelta: {x: 790.638, y: 144.134}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1064378249
 MonoBehaviour:

@@ -17,8 +17,6 @@ public class GameManager : MonoBehaviour
     public GameObject pausePanel;
     public CinemachineVirtualCamera gameOverCam;
 
-    public Text scoreTextt;
-
     [SerializeField] Animator animator;
     private readonly int HashGameOver = Animator.StringToHash("isGameOver");
 
@@ -85,7 +83,7 @@ public class GameManager : MonoBehaviour
             SpawnNextSky();
         }
 
-        // 화면 아래로 완전히 벗어난 배경은 제거(또는 풀링) ※선택 사항
+        // 화면 아래로 완전히 벗어난 배경은 제거
         // 예를 들어: “플레이어가 밑에서 2 * skySliceHeight 아래로 내려가면 삭제”
         float removeBelowY = player.position.y - (skySliceHeight * 2f);
         for (int i = activeSkies.Count - 1; i >= 0; i--)
