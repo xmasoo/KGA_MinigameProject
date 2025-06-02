@@ -1,15 +1,15 @@
-using System.Collections;
 using UnityEngine;
 
 public class BreakPlatform : PlatformBase
 {
-    [SerializeField] GameObject breakAnimation;
+    [SerializeField] private GameObject breakPrefab;
 
     public override void OnPlayerLanding()
     {
         gameObject.SetActive(false);
-        Instantiate(breakAnimation, transform.position, Quaternion.identity);
-        Destroy(breakAnimation, 5);
-    }
 
+        GameObject breakInstance = Instantiate(breakPrefab, transform.position, Quaternion.identity);
+
+        Destroy(breakInstance, 2f); // 2초 뒤 이펙트 인스턴스 삭제
+    }
 }

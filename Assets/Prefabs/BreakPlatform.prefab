@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolReference: {fileID: 0}
-  breakAnimation: {fileID: 1313031296347180465, guid: 60fd7630d7960a8408377c038bd7f1bf, type: 3}
+  breakPrefab: {fileID: 1313031296347180465, guid: 60fd7630d7960a8408377c038bd7f1bf, type: 3}
 --- !u!1 &8841579045412816700
 GameObject:
   m_ObjectHideFlags: 0
